@@ -9,6 +9,7 @@ const carsRouter = require('./routers/carsRouter')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/cars', carsRouter);
 
 const CONNECTION_STRING = "mongodb+srv://Neoara:Good99girl@cluster0.zewatul.mongodb.net/?retryWrites=true&w=majority";
 
