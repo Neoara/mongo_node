@@ -10,6 +10,13 @@ carsRouter.get('/', (req, res) => {
     });
 });
 
+carsRouter.get('/:id', async (req, res) => {
+    let id = req.params.id
+    let car = await models.Car.findById(id);
+    res.status(200).send(car);
+});
+
+
 carsRouter.post('/', (req, res) => {
     const {model, color, year} = req.body;
 
@@ -18,7 +25,7 @@ carsRouter.post('/', (req, res) => {
     car.save(err => {
         if(err) return console.log(err);
         
-        res.send("Car saved")
+        res.send("Car saved");
     })
 });
 

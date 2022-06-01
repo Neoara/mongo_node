@@ -4,10 +4,16 @@ const models = require('../Models');
 
 usersRouter.get('/', (req, res) => {
     models.User.find({}, (err, results) => {
-        if(err) return console.log(err);
+        if(err) res.status(500).send('error');
 
-        res.send(results); 
+        res.status(200).send(results); 
     });
+});
+
+usersRouter.get('/:id', async (req, res) => {
+    let id = req.params.id
+    let user = await models.User.findById(id);
+    res.status(200).send(user);
 });
 
 usersRouter.post('/', (req, res) => {
@@ -22,9 +28,9 @@ usersRouter.post('/', (req, res) => {
         });
 
     user.save(err => {
-        if(err) return console.log(err);
+        if(err) res.status(500).send('error');
         
-        res.send("User saved");
+        res.status(200).send("User saved");
     })
 });
 
@@ -32,6 +38,10 @@ usersRouter.post("/addCar", async (req, res) => {
     const {userId, car} = req.body;
     
     let user = await models.User.findById(userId);
+    user.cars.push(car);
+
+    await models.User.findByIdAndUpdate(userId, user);
+    res.status(200).send("car added");
 });
 
 module.exports = usersRouter;
