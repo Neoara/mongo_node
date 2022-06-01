@@ -5,11 +5,13 @@ const cors = require('cors');
 const app  = express();
 app.use(cors());
 
-const carsRouter = require('./routers/carsRouter')
+const carsRouter = require('./routers/carsRouter');
+const usersRouter = require('./routers/usersRouter');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/cars', carsRouter);
+app.use('/users', usersRouter);
 
 const CONNECTION_STRING = "mongodb+srv://Neoara:Good99girl@cluster0.zewatul.mongodb.net/?retryWrites=true&w=majority";
 

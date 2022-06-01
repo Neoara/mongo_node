@@ -18,7 +18,7 @@ carsRouter.post('/', (req, res) => {
     car.save(err => {
         if(err) return console.log(err);
         
-        res.send("car saved")
+        res.send("Car saved")
     })
 });
 
