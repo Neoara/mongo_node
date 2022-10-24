@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/cars', carsRouter);
 app.use('/users', usersRouter);
 
-const CONNECTION_STRING = "mongodb+srv://Neoara:Good99girl@cluster0.zewatul.mongodb.net/?retryWrites=true&w=majority";
+const CONNECTION_STRING = "Your mongo Key";
 
 mongoose.connect(CONNECTION_STRING, function(err){
     if(err) return console.log(err);
